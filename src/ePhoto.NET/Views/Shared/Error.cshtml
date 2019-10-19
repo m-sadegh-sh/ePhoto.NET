@@ -1,0 +1,12 @@
+﻿@model HandleErrorInfo
+
+@{
+    ViewBag.Title = "Custom Error";
+}
+
+<h1>MVC Error</h1>
+Controller: @Model.ControllerName <br/>
+Action: @Model.ActionName <br/>
+Message: @Model.Exception.Message
+The page is not available. Click to go back to Photo List.
+<p>@Html.ActionLink("Back to Photo List", T4Routes.Home.Index())</p>

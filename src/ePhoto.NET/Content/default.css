@@ -1,0 +1,28 @@
+﻿body {
+    direction: rtl;
+    font-family: IRANSans;
+}
+
+.field-validation-error span {
+    color: #a94442;
+}
+
+.jumbotron {
+    margin-bottom: 15px;
+}
+
+.jumbotron h1 {
+    font-weight: bold;
+    font-size: 36px;
+    margin-bottom: 20px
+}
+
+.jumbotron p {
+    margin-bottom: 20px
+}
+
+.jumbotron .btn-lg {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 15px 24px;
+}

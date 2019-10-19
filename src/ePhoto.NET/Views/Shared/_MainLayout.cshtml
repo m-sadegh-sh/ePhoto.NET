@@ -1,0 +1,43 @@
+﻿@{
+    Layout = T4Routes.Shared.Views._LayoutBase;
+    var context = DependencyResolver.Current.GetService<IPhotoSharingContext>();
+    var categoriesCloud = context.FindCategoriesCloud();
+    var photosCount = context.FindPhotosCount();
+}
+
+@section Styles {
+    <link type="text/css" rel="stylesheet" href="@Content.carousel_css"/>
+    @RenderSection("Styles", false)
+}
+
+@Html.Partial(T4Routes.Shared.Views._Navbar)
+
+<div class="container">
+    @RenderSection("Header", false)
+    <div class="col-md-2 col-sm-4 aside">
+        @RenderSection("Aside", false)
+        <ul class="nav nav-pills nav-stacked" data-activate="true" data-parent="true">
+            <li>
+                <a href="@Url.Action(T4Routes.Photo.Index())">
+                    همه<span class="badge">@photosCount.ToPretty()</span>
+                </a>
+            </li>
+            @foreach (var categoryCloud in categoriesCloud) {
+                <li>
+                    <a href="@Url.Action(T4Routes.Photo.IndexCategory(categoryCloud.Key.Name))">
+                        @categoryCloud.Key.Name<span class="badge">@categoryCloud.Value.ToPretty()</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-10 col-sm-8 content">
+        @RenderBody()
+    </div>
+</div>
+
+@Html.Partial(T4Routes.Shared.Views._Footer)
+
+@section Scripts {
+    @RenderSection("Scripts", false)
+}

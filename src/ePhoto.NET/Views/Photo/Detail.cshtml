@@ -1,0 +1,148 @@
+﻿@model PhotoDetailViewModel
+
+@{
+    ViewBag.Title = string.Format("ای‌فوتو - {0}", Model.Photo.Title);
+}
+
+@section Aside {
+    <ul class="nav nav-pills nav-stacked user">
+        <li role="presentation">
+            <img class="img-circle avatar" src="@Url.Action(T4Routes.Account.Avatar(Model.Photo.User.Slug, 64))" alt="@Model.Photo.User.DisplayName">
+            <div class="details">
+                <span class="name">@Model.Photo.User.DisplayName</span>
+                @Html.ActionLink(string.Format("ephoto.net/{0}", Model.Photo.User.Slug), T4Routes.Photo.IndexUser(Model.Photo.User.Slug), new {@class = "link"})
+            </div>
+        </li>
+        <li role="presentation" class="detail-lines">
+            <div class="line">
+                تا بحال <span class="badge">@Model.PhotosCount</span> عکس در ای‌فوتو منتشر کرده است.
+            </div>
+        </li>
+    </ul>
+}
+
+@if (!Model.Photo.IsApproved) {
+    <div class="alert alert-warning">
+        <strong>توجه</strong> این تصویر هنوز توسط مدیران سایت تائید نشده است و به جز شما کسی قادر به مشاهده آن نیست.
+    </div>
+}
+
+<div class="pin-single clearfix">
+    <div class="pin col-md-12">
+        <div class="pin-overlay">
+            <div class="pin-inner clearfix">
+                <a href="@Url.Action(T4Routes.Photo.Download(Model.Photo.Category.Slug, Model.Photo.Slug))" class="btn btn-sm pull-left btn-link">
+                    <i class="fa fa-download"></i> بارگذاری @(Model.DownloadsCount > 0 ? string.Format("({0} بار دانلود شده)", Model.DownloadsCount) : null)
+                </a>
+                @if (!Model.IsLiked) {
+                    <a href="@Url.Action(T4Routes.Photo.Like(Model.Photo.Category.Slug, Model.Photo.Slug))" class="btn btn-sm pull-right btn-link btn-like">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                }
+            </div>
+            <img class="pin-image" src="@Url.Action(T4Routes.Photo.Download(Model.Photo.Category.Slug, Model.Photo.Slug, 700, 300))" alt="@Model.Photo.Title">
+        </div>
+        <div class="pin-content">
+            <h3 class="pin-title">@Model.Photo.Title</h3>
+            <hr class="pin-divider"/>
+
+            <div class="pin-comment">
+                <div class="pin-credit clearfix">
+                    <img class="img-circle pin-avatar" src="@Url.Action(T4Routes.Account.Avatar(Model.Photo.User.Slug, 64))" alt="@Model.Photo.User.DisplayName">
+                    <div class="pin-metadata">
+                        <a href="@Url.Action(T4Routes.Photo.IndexUser(Model.Photo.User.Slug))" class="btn btn-sm btn-link">
+                            @Model.Photo.User.DisplayName
+                        </a>
+                        <div class="btn-sm pin-date-count">
+                            <i class="fa fa-eye"></i>
+                            @Model.ViewsCount.ToPretty()
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="pin-divider"/>
+            <div class="pin-footer clearfix">
+                <a href="@Url.Action(T4Routes.Photo.IndexCategory(Model.Photo.Category.Slug))" class="btn btn-sm pull-left btn-link">
+                    <i class="fa fa-tag"></i> @Model.Photo.Category.Name
+                </a>
+                <div class="pull-right">
+                    @if (Model.IsLiked) {
+                        <span class="btn btn-sm btn-link btn-like btn-liked">
+                            <i class="fa fa-heart"></i>
+                        </span>
+                        <span class="btn btn-sm btn-link btn-like btn-liked">
+                            شما @(Model.LikesCount > 1 ? string.Format("و {0} نفر دیگر", Model.LikesCount - 1) : null) این عکس را پسندیده اید.
+                        </span>
+                    } else {
+                        <a href="@Url.Action(T4Routes.Photo.Like(Model.Photo.Category.Slug, Model.Photo.Slug))" class="btn btn-sm btn-link btn-like">
+                            <i class="fa fa-heart"></i>
+                        </a>
+                        if (Model.LikesCount > 0) {
+                            <span class="btn btn-sm btn-link btn-like btn-liked">
+                                @Model.LikesCount نفر این عکس را پسندیده @(Model.LikesCount > 1 ? "اند" : "است").
+                            </span>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pin col-md-12">
+        <div class="pin-content">
+            <h3 class="pin-title">پسندیده شده توسط...</h3>
+            <hr class="pin-divider"/>
+            <div class="pin-credit clearfix">
+                @if (Model.LikedUsers.Any()) {
+                    foreach (var user in Model.LikedUsers) {
+                        <div class="pin-like">
+                            <img class="img-circle pin-avatar" src="@Url.Action(T4Routes.Account.Avatar(user.Slug, 64))" alt="@user.DisplayName">
+                            <div class="img-circle display-name">
+                                <span>@user.DisplayName</span>
+                            </div>
+                        </div>
+                    }
+                } else {
+                    <div class="pin-message">هنوز هیچ کسی این عکس را نپسندیده است! شما اولین نفر باشید.</div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="pin col-md-12">
+        <div class="pin-content">
+            <h3 class="pin-title">نظرات...</h3>
+            <hr class="pin-divider"/>
+            @if (Model.Comments.Any()) {
+                for (var i = 0; i < Model.Comments.Count; i++) {
+                    var comment = Model.Comments[i];
+
+                    if (i > 0) {
+                        <hr class="pin-divider"/>
+                    }
+
+                    <div class="pin-comment">
+                        <div class="pin-credit clearfix">
+                            <img class="img-circle pin-avatar" src="@Url.Action(T4Routes.Account.Avatar(comment.User.Slug, 64))" alt="@comment.User.DisplayName">
+                            <div class="pin-metadata clearfix">
+                                <a href="@Url.Action(T4Routes.Photo.IndexUser(comment.User.Slug))" class="btn btn-sm btn-link">
+                                    @comment.User.DisplayName
+                                </a>
+                                <div class="btn-sm pin-date-count">
+                                    @comment.PostDate.ToPretty()
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pin-body">
+                            @comment.Body
+                        </div>
+                    </div>
+                }
+            } else {
+                <div class="pin-message">هنوز هیچ کسی در مورد این عکس اظهار نظری نکرده است! شما اولین نفر باشید.</div>
+            }
+            @if (Request.IsAuthenticated) {
+                <hr class="pin-divider"/>
+                @Html.Action(T4Routes.Comment.New(Model.Photo.Category.Slug, Model.Photo.Slug))
+            }
+        </div>
+    </div>
+</div>

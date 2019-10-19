@@ -1,0 +1,50 @@
+﻿@model List<CommentModel>
+
+@{
+    ViewBag.Title = "ای‌فوتو - مدیریت نظرات";
+}
+
+<h3>مدیریت نظرات</h3>
+<hr />
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>متن</th>
+        <th>جزئیات</th>
+        <th>وضعیت</th>
+        <th>عملیات</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.Any()) {
+        for (var i = 0; i < Model.Count; i++) {
+            var comment = Model[i];
+
+            <tr>
+                <th>@(i + 1)</th>
+                <td>@comment.Body</td>
+                <td>
+                    مرتبط با: @Html.ActionLink(comment.Photo.Title, T4Routes.Photo.Detail(comment.Photo.Category.Slug, comment.Photo.Slug), new {target = "_blank"})<br/>
+                    ارسال کننده: @comment.User.DisplayName (@comment.User.Email)
+                </td>
+                <td>@(comment.IsApproved ? "تائید شده" : "منتظر تائید")</td>
+                <td>
+                    <div class="btn-group">
+                        @if (!comment.IsApproved) {
+                            @Html.ActionLink("تائید", T4Routes.Comment.Approve(comment.CommentId), new {@class = "btn btn-xs btn-success"})
+                        }
+                        @Html.ActionLink("حذف", T4Routes.Comment.Delete(comment.CommentId), new {@class = "btn btn-xs btn-danger"})
+                    </div>
+                </td>
+            </tr>
+        }
+    } else {
+        <tr>
+            <td colspan="5">
+                <div class="pin-message">هنوز نظری از طرف کاربران ثبت نشده است.</div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

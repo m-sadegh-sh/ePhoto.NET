@@ -1,0 +1,44 @@
+﻿@model List<PhotoViewModel>
+
+@if (Model.Any()) {
+    <div class="pins-container">
+        @for (var i = 0; i < Model.Count; i++) {
+            var item = Model[i];
+
+            <div class="pin">
+                <a href="@Url.Action(T4Routes.Photo.Detail(item.Photo.Category.Slug, item.Photo.Slug))" class="pin-overlay">
+                    <img class="pin-image" src="@Url.Action(T4Routes.Photo.Download(item.Photo.Category.Slug, item.Photo.Slug, 200))" alt="@item.Photo.Title">
+                </a>
+                <div class="pin-content">
+                    <h3 class="pin-title">@item.Photo.Title</h3>
+                    <hr class="pin-divider"/>
+                    <div class="pin-credit clearfix">
+                        <img class="img-circle pin-avatar" src="@Url.Action(T4Routes.Account.Avatar(item.Photo.User.Slug, 64))" alt="@item.Photo.User.DisplayName">
+                        <div class="pin-metadata">
+                            <a href="@Url.Action(T4Routes.Photo.IndexUser(item.Photo.User.Slug))" class="btn btn-sm btn-link">
+                                @item.Photo.User.DisplayName
+                            </a>
+                            <div class="btn-sm pin-date-count">
+                                <i class="fa fa-eye"></i>
+                                @item.ViewsCount.ToPretty()
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="pin-divider"/>
+                    <div class="pin-footer clearfix">
+                        <a href="@Url.Action(T4Routes.Photo.IndexCategory(item.Photo.Category.Slug))" class="btn btn-sm pull-left btn-link">
+                            <i class="fa fa-tag"></i> @item.Photo.Category.Name
+                        </a>
+                        <a href="@Url.Action(T4Routes.Photo.Detail(item.Photo.Category.Slug, item.Photo.Slug))" class="btn btn-sm pull-right btn-link">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+} else {
+    <div class="pin-message large">
+        عکسی مطابق با متن <strong>"@(Request.QueryString["queryText"])"</strong> یافت نشد!
+    </div>
+}

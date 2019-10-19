@@ -1,0 +1,44 @@
+﻿@model LoginModel
+
+@{
+    Layout = T4Routes.Shared.Views._NarrowLayout;
+    ViewBag.Title = "ای‌فوتو - ورود";
+}
+
+<div class="container">
+    @using (Html.BeginForm(T4Routes.Account.Login((string) ViewBag.ReturnUrl), FormMethod.Post, new {@class = "form-horizontal form-narrow"})) {
+        <h3 class="form-heading">لطفا وارد شوید...</h3>
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new {@class = "col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.Email, new {@class = "form-control text-right", type = "email", placeholder = @Html.DisplayNameFor(model => model.Email)})
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new {@class = "col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.PasswordFor(model => model.Password, new {@class = "form-control", placeholder = @Html.DisplayNameFor(model => model.Password)})
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.RememberMe)
+                        @Html.DisplayNameFor(model => model.RememberMe)
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <button class="btn btn-primary" type="submit">ورود</button>
+                @Html.ActionLink("عضویت", T4Routes.Account.Register(), new { @class = "btn btn-info" })
+                @Html.ActionLink("برگشت", T4Routes.Photo.Index(), new {@class = "btn btn-success"})
+            </div>
+        </div>
+    }
+</div>

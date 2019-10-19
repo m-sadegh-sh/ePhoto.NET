@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "ای‌فوتو - سرویس اشتراک گذاری تصاویر";
+}
+
+<div class="jumbotron clearfix">
+    <h1>به ای‌فوتو خوش آمدید!</h1>
+    <p>
+        ای‌فوتو یک سرویس اشتراک گذاری تصاویر (Photo Sharing Service) است که به شما در به اشتراک گذاری لحظات نابی که از طریق عکس برداری به ثبت رسانده‌اید
+        به دیگران کمک می کند.
+    </p>
+    <div class="pull-right">
+        <a class="btn btn-success btn-lg" href="@Url.Action(T4Routes.Photo.New())">
+            <i class="fa fa-upload"></i> ارسال اولین عکس در ای‌فوتو
+        </a>
+        <a class="btn btn-primary btn-lg" href="@Url.Action(T4Routes.Home.About())">
+            <i class="fa fa-info-circle"></i> از ای‌فوتو بیشتر بدانید
+        </a>
+    </div>
+</div>
+
+@Html.Action(T4Routes.Photo.List(1, int.MaxValue))

@@ -1,0 +1,60 @@
+﻿@model List<UserModel>
+
+@{
+    ViewBag.Title = "ای‌فوتو - مدیریت کاربران";
+}
+
+<h3>مدیریت کاربران</h3>
+<hr/>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>نام</th>
+        <th>جزئیات</th>
+        <th>آواتار</th>
+        <th>دسترسی مدیر</th>
+        <th>عملیات</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.Any()) {
+        for (var i = 0; i < Model.Count; i++) {
+            var user = Model[i];
+
+            <tr>
+                <th>@(i + 1)</th>
+                <td>@user.DisplayName</td>
+                <td>
+                    ایمیل: @user.Email<br/>
+                    نامک: @user.Slug
+                </td>
+                <td>
+                    @if (user.AvatarFile != null) {
+                        <img src="@Url.Action(T4Routes.Account.Avatar(user.Slug, 32))" class="img-circle"/>
+                    } else {
+                        <text>ندارد</text>
+                    }
+                </td>
+                <td>@(user.IsAdmin ? "بلی" : "خیر")</td>
+                <td>
+                    <div class="btn-group">
+                        @if (user.IsAdmin) {
+                            @Html.ActionLink("تبدیل به کاربر عادی", T4Routes.User.MarkAsNormalUser(user.UserId), new {@class = "btn btn-xs btn-success"})
+                        } else {
+                            @Html.ActionLink("تبدیل به مدیر", T4Routes.User.MarkAsAdmin(user.UserId), new {@class = "btn btn-xs btn-success"})
+                        }
+                        @Html.ActionLink("حذف", T4Routes.User.Delete(user.UserId), new {@class = "btn btn-xs btn-danger"})
+                    </div>
+                </td>
+            </tr>
+        }
+    } else {
+        <tr>
+            <td colspan="5">
+                <div class="pin-message">هنوز کاربری عضو نشده است.</div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

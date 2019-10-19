@@ -1,0 +1,7 @@
+﻿@model CategoryModel
+
+@{
+    ViewBag.Title = string.Format("ای‌فوتو - دسته بندی {0}", Model.Name);
+}
+
+@Html.Action(T4Routes.Photo.ListCategory(Model.Slug, 1, int.MaxValue))

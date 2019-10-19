@@ -1,0 +1,24 @@
+﻿@model UserViewModel
+
+@{
+    ViewBag.Title = string.Format("ای‌فوتو - تصاویر {0}", Model.User.DisplayName);
+}
+
+@section Aside {
+    <ul class="nav nav-pills nav-stacked user">
+        <li role="presentation">
+            <img class="img-circle avatar" src="@Url.Action(T4Routes.Account.Avatar(Model.User.Slug, 64))" alt="@Model.User.DisplayName">
+            <div class="details">
+                <span class="name">@Model.User.DisplayName</span>
+                @Html.ActionLink(string.Format("ephoto.net/{0}", Model.User.Slug), T4Routes.Photo.IndexUser(Model.User.Slug), new {@class = "link"})
+            </div>
+        </li>
+        <li role="presentation" class="detail-lines">
+            <div class="line">
+                تا بحال <span class="badge">@Model.PhotosCount</span> عکس در ای‌فوتو منتشر کرده است.
+            </div>
+        </li>
+    </ul>
+}
+
+@Html.Action(T4Routes.Photo.ListUser(Model.User.Slug, 1, int.MaxValue))

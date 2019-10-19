@@ -1,0 +1,558 @@
+body {
+    color: #5a5a5a;
+}
+
+footer p {
+    margin-bottom: 15px;
+}
+
+.plain-container {
+    padding: 0 15px;
+    margin-bottom: 15px;
+}
+
+    .plain-container .title {
+        margin: 0 0 20px;
+        font-weight: bold;
+        font-size: 28px;
+    }
+
+    .plain-container p,
+    .plain-container li {
+        text-align: justify;
+        line-height: 25px;
+    }
+
+    .plain-container ul {
+        margin: 0;
+    }
+
+    .plain-container p {
+        margin: 0 0 20px;
+    }
+
+.navbar-wrapper {
+    margin-top: 15px;
+}
+
+    .navbar-wrapper .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .navbar-wrapper .navbar {
+        border-radius: 4px;
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 15px;
+    }
+
+        .navbar-wrapper .navbar .container {
+            width: auto;
+        }
+
+.featured-divider {
+    margin: 60px 0;
+}
+
+.pins-container {
+    -moz-column-count: 4;
+    -moz-column-fill: auto;
+    -moz-column-gap: 15px;
+    -webkit-column-count: 4;
+    -webkit-column-fill: auto;
+    -webkit-column-gap: 15px;
+    column-count: 4;
+    column-fill: auto;
+    column-gap: 15px;
+    margin-bottom: -15px;
+}
+
+    .pins-container .pin {
+        width: 220px;
+    }
+
+@media (max-width: 1199px) {
+    .pins-container {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+
+        .pins-container .pin {
+            width: 244px;
+        }
+}
+
+@media (max-width: 991px) {
+    .pins-container .pin {
+        width: 228px;
+    }
+
+    .pins-container {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+
+        .pins-container .pin {
+            width: 225px;
+        }
+}
+
+@media (max-width: 768px) {
+    .pins-container {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+
+        .pins-container .pin {
+            width: 228px;
+        }
+}
+
+.aside .nav,
+.pin {
+    -moz-column-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    column-break-inside: avoid;
+    background: #FEFEFE;
+    background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
+    border: 2px solid #FAFAFA;
+    border-radius: 4px;
+    border-top: solid 1px #dadada;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+    margin: 0 2px 15px;
+}
+
+.pin-single {
+    margin-bottom: 15px;
+}
+
+    .pin-single .pin {
+        margin: 0;
+        padding: 0;
+    }
+
+        .pin-single .pin + .pin {
+            margin-top: 15px;
+        }
+
+.aside,
+.content {
+    padding-left: 0;
+}
+
+.aside {
+    padding-right: 0;
+}
+
+    .aside .nav {
+        padding-top: 2px;
+    }
+
+.pin {
+    display: inline-block;
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+}
+
+    .pin .pin-image {
+        width: 100%;
+        display: block;
+    }
+
+.pin-content {
+    margin: 15px;
+}
+
+.pin-divider {
+    border-top-style: dashed;
+    margin: 10px 30px;
+}
+
+.pin-title {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 25px;
+    margin: 0;
+}
+
+.pin-credit .pin-metadata {
+    display: block;
+    margin-right: 36px;
+    padding: 10px 0 2px 10px;
+}
+
+    .pin-credit .pin-metadata a,
+    .pin-credit .pin-metadata .pin-date-count {
+        color: #777;
+        display: block;
+        padding-right: 36px;
+        text-align: right;
+    }
+
+    .pin-credit .pin-metadata a {
+        background: #f4f4f4;
+    }
+
+    .pin-credit .pin-metadata .pin-date-count {
+        font-weight: 300;
+    }
+
+.pin-credit .pin-like {
+    position: relative;
+    display: block;
+    float: right;
+}
+
+    .pin-credit .pin-like + .pin-like {
+        margin-right: 5px;
+    }
+
+    .pin-credit .pin-like .display-name {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        bottom: 2px;
+        right: 2px;
+        z-index: 1;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        transition: opacity .3s ease-in-out;
+        opacity: 0;
+        overflow: hidden;
+    }
+
+.pin:hover .pin-like .display-name {
+    opacity: 1;
+}
+
+.pin-credit .pin-like .display-name span {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-weight: 300;
+    position: absolute;
+    top: 23.5px;
+    height: 17px;
+    left: 0;
+    white-space: nowrap;
+    right: 0;
+    font-size: 12px;
+    padding: 0 2px;
+}
+
+.pin-comment .pin-metadata {
+    padding-bottom: 0;
+}
+
+    .pin-comment .pin-metadata .btn-link {
+        display: inline-block;
+        margin-right: -34px;
+    }
+
+    .pin-comment .pin-metadata .pin-date-count {
+        display: inline-block;
+        float: left;
+    }
+
+.pin-comment .pin-body {
+    margin-right: 72px;
+}
+
+.pin-message {
+    text-align: center;
+    color: #a0a0a0;
+    font-weight: 300;
+}
+
+    .pin-message.large {
+        margin: 146px 0;
+        font-size: 16px;
+    }
+
+    .pin-message strong {
+        font-weight: normal;
+    }
+
+.pin-avatar,
+.user .avatar {
+    background: #fff;
+    border: solid 1px #c5c5c5;
+    float: right;
+    padding: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.user li:first-child {
+    padding: 5px;
+}
+
+.user .details {
+    margin-right: 70px;
+    padding: 13px 5px;
+}
+
+.user .detail-lines .line {
+    background: #f3f3f3;
+    border-top: solid 1px #e1e1e1;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 23px;
+    padding: 10px 15px;
+}
+
+.user .name {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+.user .link {
+    color: rgba(51, 122, 183, 0.61);
+    direction: ltr;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 200;
+    text-align: left;
+    text-decoration: none;
+}
+
+    .user .link:hover {
+        color: #337ab7;
+    }
+
+.pin .btn-link {
+    text-decoration: none;
+    transition: background-color .3s ease-in-out;
+}
+
+    .pin .btn-link:hover {
+        background-color: #eaeaea;
+    }
+
+.pins-container:hover .pin:not(:hover) {
+    opacity: 0.7;
+}
+
+.aside a .badge {
+    float: left;
+}
+
+.btn-sm .fa {
+    top: 2px;
+    position: relative;
+}
+
+.btn-sm.pin-date-count .fa {
+    top: 1px;
+}
+
+.btn-like .fa {
+    color: #c91111;
+    font-size: 20px;
+    padding: 2px;
+    position: static;
+    -webkit-animation: button-bounce 2200ms forwards infinite cubic-bezier(0.165, 0.84, 0.44, 1);
+    -moz-animation: button-bounce 2200ms forwards infinite cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation: button-bounce 2200ms forwards infinite cubic-bezier(0.165, 0.84, 0.44, 1);
+    -webkit-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+    .btn-like .fa:focus {
+        outline: none;
+    }
+
+    .btn-like .fa:after {
+        padding: 2px;
+        content: "\f004";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-animation: button-blip 2200ms forwards infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        -moz-animation: button-blip 2200ms forwards infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        animation: button-blip 2200ms forwards infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .btn-like .fa:hover:after {
+        border-color: transparent;
+    }
+
+.btn-liked,
+.btn-liked:hover,
+.btn-liked:focus,
+.pin-like-stats {
+    background: transparent !important;
+    color: #777 !important;
+    cursor: default;
+    font-weight: 300;
+}
+
+@-webkit-keyframes button-bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(0.96);
+    }
+
+    20% {
+        transform: scale(1.04);
+    }
+
+    52%, 100% {
+        transform: scale(1);
+    }
+}
+
+@-moz-keyframes button-bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(0.96);
+    }
+
+    20% {
+        transform: scale(1.04);
+    }
+
+    52%, 100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes button-bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(0.96);
+    }
+
+    20% {
+        transform: scale(1.04);
+    }
+
+    52%, 100% {
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes button-blip {
+    0% {
+        transform: scaleX(1) scaleY(1);
+        opacity: 0;
+    }
+
+    10% {
+        transform: scaleX(1) scaleY(1);
+        opacity: .7;
+    }
+
+    30%, 99% {
+        transform: scaleX(1.35) scaleY(1.35);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scaleX(1) scaleY(1);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes button-blip {
+    0% {
+        transform: scaleX(1) scaleY(1);
+        opacity: 0;
+    }
+
+    10% {
+        transform: scaleX(1) scaleY(1);
+        opacity: .7;
+    }
+
+    30%, 99% {
+        transform: scaleX(1.35) scaleY(1.35);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scaleX(1) scaleY(1);
+        opacity: 0;
+    }
+}
+
+@keyframes button-blip {
+    0% {
+        transform: scaleX(1) scaleY(1);
+        opacity: 0;
+    }
+
+    10% {
+        transform: scaleX(1) scaleY(1);
+        opacity: .7;
+    }
+
+    30%, 99% {
+        transform: scaleX(1.35) scaleY(1.35);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scaleX(1) scaleY(1);
+        opacity: 0;
+    }
+}
+
+.pin-overlay {
+    overflow: hidden;
+    margin-top: 2px;
+    position: relative;
+    border-radius: 4px 4px 0 0;
+}
+
+    .pin-overlay .pin-inner {
+        position: absolute;
+        top: -5px;
+        visibility: collapse;
+        opacity: 0;
+        transition: top .3s ease-in-out, visibility .3s ease-in-out, opacity .3s ease-in-out;
+        background-color: rgba(0, 0, 0, 0.5);
+        left: 0;
+        right: 0;
+    }
+
+        .pin-overlay .pin-inner a {
+            background: transparent !important;
+        }
+
+            .pin-overlay .pin-inner a.pull-left {
+                color: #fff !important;
+            }
+
+.btn-like {
+    padding-top: 1px;
+    padding-bottom: 0;
+}
+
+span.btn-like {
+    padding-right: 0;
+}
+
+.pin:hover .pin-overlay .pin-inner {
+    top: 0;
+    visibility: visible;
+    opacity: 1;
+}

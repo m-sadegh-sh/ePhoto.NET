@@ -1,0 +1,30 @@
+body {
+    background-color: #eee;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.form-narrow {
+    background: #FEFEFE;
+    background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
+    border: 2px solid #FAFAFA;
+    border-radius: 4px;
+    border-top: solid 1px #dadada;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+    margin: 50px auto;
+    max-width: 500px;
+    padding: 15px;
+}
+
+    .form-narrow .form-group:last-child {
+        margin-bottom: 0;
+    }
+
+.form-heading {
+    font-weight: bold;
+    margin: 5px 0 25px;
+}
+
+input.text-right {
+    direction: ltr;
+}

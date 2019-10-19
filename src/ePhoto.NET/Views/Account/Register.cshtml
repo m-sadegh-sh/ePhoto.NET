@@ -1,0 +1,55 @@
+﻿@model RegisterModel
+
+@{
+    Layout = T4Routes.Shared.Views._NarrowLayout;
+    ViewBag.Title = "ای‌فوتو - عضویت";
+}
+
+<div class="container">
+    @using (Html.BeginForm(T4Routes.Account.Register(), FormMethod.Post, new {@class = "form-horizontal form-narrow"})) {
+        <h2 class="form-heading">فرم عضویت</h2>
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new {@class = "col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.Email, new {@class = "form-control text-right", placeholder = @Html.DisplayNameFor(model => model.Email)})
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Slug, new {@class = "col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.Slug, new {@class = "form-control text-right", placeholder = @Html.DisplayNameFor(model => model.Slug)})
+                @Html.ValidationMessageFor(model => model.Slug)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new {@class = "col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.PasswordFor(model => model.Password, new {@class = "form-control", placeholder = @Html.DisplayNameFor(model => model.Password)})
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfirmPassword, new {@class = "col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.PasswordFor(model => model.ConfirmPassword, new {@class = "form-control", placeholder = @Html.DisplayNameFor(model => model.ConfirmPassword)})
+                @Html.ValidationMessageFor(model => model.ConfirmPassword)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DisplayName, new {@class = "col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.DisplayName, new {@class = "form-control", placeholder = @Html.DisplayNameFor(model => model.DisplayName)})
+                @Html.ValidationMessageFor(model => model.DisplayName)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <button class="btn btn-primary" type="submit">عضویت</button>
+                @Html.ActionLink("ورود", T4Routes.Account.Login(), new { @class = "btn btn-info" })
+                @Html.ActionLink("برگشت", T4Routes.Photo.Index(), new {@class = "btn btn-success"})
+            </div>
+        </div>
+    }
+</div>

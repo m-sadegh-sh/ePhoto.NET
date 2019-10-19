@@ -1,0 +1,54 @@
+﻿@model NewPhotoModel
+
+@{
+    Layout = T4Routes.Shared.Views._NarrowLayout;
+    ViewBag.Title = "ای‌فوتو - ارسال عکس";
+}
+
+<div class="container">
+    @using (Html.BeginForm(T4Routes.Photo.New(), FormMethod.Post, new {@class = "form-horizontal form-narrow", enctype = "multipart/form-data" })) {
+        <h2 class="form-narrow-heading">ارسال عکس</h2>
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "col-sm-4 control-label" })
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.Title) })
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Slug, new {@class = "col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.Slug, new {@class = "form-control text-right", placeholder = @Html.DisplayNameFor(model => model.Slug)})
+                @Html.ValidationMessageFor(model => model.Slug)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryId, new { @class = "col-sm-4 control-label" })
+            <div class="col-sm-8">
+                @Html.DropDownListFor(model => model.CategoryId, Model.Categories, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "col-sm-4 control-label" })
+            <div class="col-sm-8">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.Description) })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhotoFile, new {@class = "col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.PhotoFile, new {@class = "form-control", type = "file"})
+                @Html.ValidationMessageFor(model => model.PhotoFile)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <button class="btn btn-primary" type="submit">ارسال کن</button>
+                @Html.ActionLink("برگشت", T4Routes.Photo.Index(), new {@class = "btn btn-success"})
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,14 @@
+﻿@{
+    Layout = T4Routes.Shared.Views._LayoutBase;
+}
+
+@section Styles {
+    @RenderSection("Styles", false)
+}
+
+@RenderBody()
+
+@section Scripts {
+    <link type="text/css" rel="stylesheet" href="@Content.narrow_css"/>
+    @RenderSection("Scripts", false)
+}

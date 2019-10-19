@@ -1,0 +1,6 @@
+8/31/2016 5:15:04 PM	Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.	   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at ePhoto.NET.Models.PhotoSharingContext.CreateUser(String email, String password) in D:\TFS\LocalCollection\Personals\ePhoto.NET\ePhoto.NET\Models\PhotoSharingContext.cs:line 57
+   at ePhoto.NET.Controllers.AccountController.Register(RegisterModel model) in D:\TFS\LocalCollection\Personals\ePhoto.NET\ePhoto.NET\Controllers\AccountController.cs:line 26	EntityFramework8/31/2016 5:46:51 PM	گذرواژه فعلی رو درست وارد نکردی.	   at ePhoto.NET.Models.PhotoSharingContext.ChangeUserPassword(UserModel user, String currentPassword, String newPassword) in D:\TFS\LocalCollection\Personals\ePhoto.NET\ePhoto.NET\Models\PhotoSharingContext.cs:line 70
+   at ePhoto.NET.Controllers.AccountController.ChangePassword(ChangePasswordModel model) in D:\TFS\LocalCollection\Personals\ePhoto.NET\ePhoto.NET\Controllers\AccountController.cs:line 111	ePhoto.NET

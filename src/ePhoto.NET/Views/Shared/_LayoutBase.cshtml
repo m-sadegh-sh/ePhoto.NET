@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link type="text/css" rel="stylesheet" href="@Content.bootstrap_css"/>
+    <link type="text/css" rel="stylesheet" href="@Content.bootstrap_theme_css"/>
+    <link type="text/css" rel="stylesheet" href="@Content.font_awesome_css"/>
+    <link type="text/css" rel="stylesheet" href="@Content.font_css"/>
+    <link type="text/css" rel="stylesheet" href="@Content.default_css"/>
+    @RenderSection("Styles", false)
+</head>
+<body>
+@RenderBody()
+<script src="@Scripts.jquery_3_1_0_js" type="text/javascript"></script>
+<script src="@Scripts.jquery_validate_js" type="text/javascript"></script>
+<script src="@Scripts.jquery_validate_unobtrusive_js" type="text/javascript"></script>
+<script src="@Scripts.jquery_unobtrusive_ajax_js" type="text/javascript"></script>
+<script src="@Scripts.bootstrap_js" type="text/javascript"></script>
+<script src="@Scripts.default_js" type="text/javascript"></script>
+@RenderSection("Scripts", false)
+</body>
+</html>

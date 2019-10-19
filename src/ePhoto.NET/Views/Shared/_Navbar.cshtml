@@ -1,0 +1,74 @@
+﻿<div class="navbar-wrapper">
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Action(T4Routes.Photo.Index())" class="navbar-brand">
+                        <i class="fa fa-internet-explorer"></i> ای‌فوتو
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" data-activate="true" data-parent="true">
+                        <li>
+                            <a href="@Url.Action(T4Routes.Home.About())">
+                                <i class="fa fa-info-circle"></i> درباره ما
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(T4Routes.Home.Contact())">
+                                <i class="fa fa-envelope"></i> تماس با ما
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(T4Routes.Photo.New())">
+                                <i class="fa fa-upload"></i> ارسال عکس
+                            </a>
+                        </li>
+                    </ul>
+                    @using (Html.BeginForm(T4Routes.Photo.IndexSearch(), FormMethod.Get, new {@class = "navbar-form navbar-left"})) {
+                        <div class="form-group">
+                            <input name="queryText" type="text" class="form-control" placeholder="جستجو..." value="@Request.QueryString["queryText"]">
+                        </div>
+                    }
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (Request.IsAuthenticated && Context.FindUser().IsAdmin) {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    مدیریت <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("دسته بندی ها", T4Routes.Category.Manage())</li>
+                                    <li>@Html.ActionLink("کاربران", T4Routes.User.Manage())</li>
+                                    <li>@Html.ActionLink("تصاویر", T4Routes.Photo.Manage())</li>
+                                    <li>@Html.ActionLink("نظرات", T4Routes.Comment.Manage())</li>
+                                </ul>
+                            </li>
+                        }
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                @string.Format("سلام {0}", Context.FindUser().DisplayName) <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if (Request.IsAuthenticated) {
+                                    <li>@Html.ActionLink("صفحه شخصی من", T4Routes.Photo.IndexUser(Context.FindUser().Slug))</li>
+                                    <li>@Html.ActionLink("پروفایل من", T4Routes.Account.MyProfile())</li>
+                                    <li>@Html.ActionLink("تغییر گذرواژه", T4Routes.Account.ChangePassword())</li>
+                                    <li>@Html.ActionLink("خروج", T4Routes.Account.LogOff())</li>
+                                } else {
+                                    <li>@Html.ActionLink("عضویت", T4Routes.Account.Register())</li>
+                                    <li>@Html.ActionLink("ورود", T4Routes.Account.Login())</li>
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

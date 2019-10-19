@@ -1,0 +1,52 @@
+﻿@model List<PhotoModel>
+
+@{
+    ViewBag.Title = "ای‌فوتو - مدیریت تصاویر";
+}
+
+<h3>مدیریت تصاویر</h3>
+<hr />
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>عنوان</th>
+        <th>جزئیات</th>
+        <th>وضعیت</th>
+        <th>عملیات</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.Any()) {
+        for (var i = 0; i < Model.Count; i++) {
+            var photo = Model[i];
+
+            <tr>
+                <th>@(i + 1)</th>
+                <td>
+                    @Html.ActionLink(photo.Title, T4Routes.Photo.Detail(photo.Category.Slug, photo.Slug), new {target = "_blank"})
+                </td>
+                <td>
+                    دسته بندی: @Html.ActionLink(photo.Category.Name, T4Routes.Photo.IndexCategory(photo.Category.Slug), new {target = "_blank"})<br/>
+                    ارسال کننده: @photo.User.DisplayName (@photo.User.Email)
+                </td>
+                <td>@(photo.IsApproved ? "تائید شده" : "منتظر تائید")</td>
+                <td>
+                    <div class="btn-group">
+                        @if (!photo.IsApproved) {
+                            @Html.ActionLink("تائید", T4Routes.Photo.Approve(photo.PhotoId), new {@class = "btn btn-xs btn-success"})
+                        }
+                        @Html.ActionLink("حذف", T4Routes.Photo.Delete(photo.PhotoId), new {@class = "btn btn-xs btn-danger"})
+                    </div>
+                </td>
+            </tr>
+        }
+    } else {
+        <tr>
+            <td colspan="5">
+                <div class="pin-message">هنوز تصویری از طرف کاربران ارسال نشده است.</div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

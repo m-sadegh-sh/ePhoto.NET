@@ -1,0 +1,7 @@
+﻿@model string
+
+@{
+    ViewBag.Title = string.Format("ای‌فوتو - جستجوی {0}", Model);
+}
+
+@Html.Action(T4Routes.Photo.ListSearch(Model, 1, int.MaxValue))

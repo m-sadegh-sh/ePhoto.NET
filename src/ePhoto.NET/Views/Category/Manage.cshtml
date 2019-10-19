@@ -1,0 +1,46 @@
+﻿@model List<CategoryModel>
+
+@{
+    ViewBag.Title = "ای‌فوتو - مدیریت دسته بندی ها";
+}
+
+<h3 class="clearfix">
+    مدیریت دسته بندی ها
+    @Html.ActionLink("ایجاد دسته بندی جدید", T4Routes.Category.NewOrEdit(0), new { @class = "btn btn-sm btn-success pull-right" })
+</h3>
+<hr />
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>نام</th>
+        <th>نامک</th>
+        <th>عملیات</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.Any()) {
+        for (var i = 0; i < Model.Count; i++) {
+            var category = Model[i];
+
+            <tr>
+                <th>@(i + 1)</th>
+                <td>@category.Name</td>
+                <td>@category.Slug</td>
+                <td>
+                    <div class="btn-group">
+                        @Html.ActionLink("ویرایش", T4Routes.Category.NewOrEdit(category.CategoryId), new {@class = "btn btn-xs btn-success"})
+                        @Html.ActionLink("حذف", T4Routes.Category.Delete(category.CategoryId), new {@class = "btn btn-xs btn-danger"})
+                    </div>
+                </td>
+            </tr>
+        }
+    } else {
+        <tr>
+            <td colspan="5">
+                <div class="pin-message">هنوز دسته بندی ایجاد نشده است.</div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
